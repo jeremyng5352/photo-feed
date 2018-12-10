@@ -1,0 +1,123 @@
+@import '../../sass/variables';
+@import '../../sass/mixins';
+@import '../../sass/base';
+$main-width: 95vw;
+$queue-container-width: 12.5vw;
+#main-slide-show-container {
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    font-family: $roboto-font;
+    @include column-center;
+    justify-content: flex-start;
+    #slide-show-header {
+        width: $main-width;
+        height: auto;
+        @include column-center;
+        color: white;
+        border-bottom: $dark-pink solid 2px;
+        padding: 2vh 0;
+        h2 {
+            letter-spacing: 9px;
+            font-weight: bold;
+            font-size: 30pt;
+        }
+        h4 {
+            font-weight: normal;
+            margin-top: 0.75vh;
+            letter-spacing: 6px;
+            font-size: 18pt;
+        }
+    }
+    #message {
+        color: white;
+        font-size: 16pt;
+        letter-spacing: 4px;
+        font-weight: 300;
+        color: #ddd;
+        margin-top: 2vh;
+        a {
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+    }
+    #slide-show-container {
+        width: $main-width;
+        height: 100%;
+        @include row-center;
+        padding: 4vh 0;
+        .queue-container {
+            width: $queue-container-width;
+            height: 100%;
+            @include column-center;
+            justify-content: space-between;
+            align-items: flex-start;
+            .block {
+                width: $queue-container-width - 2.5vw;
+                height: $queue-container-width - 2.5vw;
+                position: relative;
+                cursor: pointer;
+                .block-background {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: white;
+                }
+                .helper {
+                    width: 100%;
+                    color: $dark-pink;
+                    position: absolute;
+                    bottom: -25px;
+                    font-size: 12pt;
+                    font-weight: 500;
+                    letter-spacing: 2px;
+                }
+            }
+        }
+        .image-container {
+            width: $main-width - $queue-container-width;
+            height: 100%;
+            @include row-center;
+            justify-content: space-between;
+            .image {
+                width: 46.5%;
+                height: 100%;
+                background: white;
+                margin-right: 3.5%;
+            }
+            .description-section {
+                width: 50%;
+                height: 100%;
+                @include column-center;
+                align-items: flex-start;
+                justify-content: space-between;
+                color: white;
+                .description {
+                    width: 100%;
+                    height: 80%;
+                    @include row-center;
+                    justify-content: flex-start;
+                    font-size: 18pt;
+                    font-weight: 300;
+                    line-height: 175%;
+                }
+                button.next {
+                    margin-top: auto;
+                    margin-left: auto;
+                    background: $dark-pink;
+                    color: white;
+                    margin-top: 1vh;
+                    width: 175px;
+                    padding: 1.5vh 0;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    border-color: transparent;
+                    letter-spacing: 2px;
+                    font-size: 12pt;
+                }
+            }
+        }
+    }
+}
