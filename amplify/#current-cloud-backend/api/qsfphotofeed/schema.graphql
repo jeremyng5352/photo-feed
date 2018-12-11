@@ -1,0 +1,19 @@
+type Item @model {
+  id: ID!
+  file: S3Object!
+  caption: String!
+}
+
+type S3Object {
+    bucket: String!
+    key: String!
+    region: String!
+}
+
+input S3ObjectInput {
+    bucket: String!
+    key: String!
+    region: String!
+    localUri: String
+    mimeType: String
+}

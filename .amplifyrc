@@ -1,0 +1,14 @@
+{
+    "providers": {
+        "awscloudformation": {
+            "AuthRoleName": "hotoeed-20181211114903-authRole",
+            "UnauthRoleArn": "arn:aws:iam::551117793607:role/hotoeed-20181211114903-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::551117793607:role/hotoeed-20181211114903-authRole",
+            "Region": "ap-southeast-2",
+            "DeploymentBucketName": "hotoeed-20181211114903-deployment",
+            "UnauthRoleName": "hotoeed-20181211114903-unauthRole",
+            "StackName": "hotoeed-20181211114903",
+            "StackId": "arn:aws:cloudformation:ap-southeast-2:551117793607:stack/hotoeed-20181211114903/f52c7810-fce6-11e8-9b2d-0ae74239a372"
+        }
+    }
+}

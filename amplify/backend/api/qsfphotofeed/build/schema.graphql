@@ -1,0 +1,125 @@
+type Item {
+  id: ID!
+  file: S3Object!
+  caption: String!
+}
+
+type S3Object {
+  bucket: String!
+  key: String!
+  region: String!
+}
+
+input S3ObjectInput {
+  bucket: String!
+  key: String!
+  region: String!
+  localUri: String
+  mimeType: String
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelItemConnection {
+  items: [Item]
+  nextToken: String
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelItemFilterInput {
+  id: ModelIDFilterInput
+  caption: ModelStringFilterInput
+  and: [ModelItemFilterInput]
+  or: [ModelItemFilterInput]
+  not: ModelItemFilterInput
+}
+
+type Query {
+  getItem(id: ID!): Item
+  listItems(filter: ModelItemFilterInput, limit: Int, nextToken: String): ModelItemConnection
+}
+
+input CreateItemInput {
+  id: ID
+  file: S3ObjectInput!
+  caption: String!
+}
+
+input UpdateItemInput {
+  id: ID!
+  file: S3ObjectInput
+  caption: String
+}
+
+input DeleteItemInput {
+  id: ID
+}
+
+type Mutation {
+  createItem(input: CreateItemInput!): Item
+  updateItem(input: UpdateItemInput!): Item
+  deleteItem(input: DeleteItemInput!): Item
+}
+
+type Subscription {
+  onCreateItem: Item @aws_subscribe(mutations: ["createItem"])
+  onUpdateItem: Item @aws_subscribe(mutations: ["updateItem"])
+  onDeleteItem: Item @aws_subscribe(mutations: ["deleteItem"])
+}

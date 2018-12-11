@@ -1,0 +1,7 @@
+{
+    "AppSyncApiName": "qsfphotofeed",
+    "schemaGraphql": "s3://hotoeed-20181211114903-deployment/amplify-appsync-files/schema.graphql.1544493352103",
+    "ResolverBucket": "hotoeed-20181211114903-deployment",
+    "ResolverRootKey": "amplify-appsync-files",
+    "DeploymentTimestamp": "1544493352103"
+}

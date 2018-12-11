@@ -1,0 +1,63 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "hotoeed-20181211114903-authRole",
+      "UnauthRoleArn": "arn:aws:iam::551117793607:role/hotoeed-20181211114903-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::551117793607:role/hotoeed-20181211114903-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "hotoeed-20181211114903-deployment",
+      "UnauthRoleName": "hotoeed-20181211114903-unauthRole",
+      "StackName": "hotoeed-20181211114903",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:551117793607:stack/hotoeed-20181211114903/f52c7810-fce6-11e8-9b2d-0ae74239a372"
+    }
+  },
+  "auth": {
+    "cognitoca5cfb8b": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/hotoeed-20181211114903-deployment/amplify-cfn-templates/auth/cognitoca5cfb8b-cloudformation-template.yml",
+        "logicalId": "authcognitoca5cfb8b"
+      },
+      "lastPushTimeStamp": "2018-12-11T01:58:35.483Z",
+      "output": {
+        "AppClientSecret": "kobo4po95u7am0rv584sp3rr5jdieqamm17fvo9b5im1ianvvt",
+        "UserPoolId": "ap-southeast-2_6IR0Korcz",
+        "AppClientIDWeb": "6aka97tqe1u5qdb2u6e84q6aki",
+        "AppClientID": "746l34q0sofd86s5vti1tc87o5",
+        "IdentityPoolId": "ap-southeast-2:142f16ac-c44c-4132-816b-01c9c0c7db57",
+        "IdentityPoolName": "cognitoca5cfb8b_identitypool_ca5cfb8b",
+        "UserPoolName": "cognitoca5cfb8b_userpool_ca5cfb8b"
+      },
+      "lastPushDirHash": "FBplnVWkIrFEyzGBRVd2d0SgHVY="
+    }
+  },
+  "storage": {
+    "s3519481cc": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/hotoeed-20181211114903-deployment/amplify-cfn-templates/storage/s3-cloudformation-template.json",
+        "logicalId": "storages3519481cc"
+      },
+      "lastPushTimeStamp": "2018-12-11T01:58:35.483Z",
+      "output": {
+        "BucketName": "qsfphotofeed5899d9c121a84fc1b8aa4ba193396673",
+        "Region": "ap-southeast-2"
+      },
+      "lastPushDirHash": "NW2tTmXD/0mh/WMhjMRiCOoLs5w="
+    }
+  },
+  "api": {
+    "qsfphotofeed": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "API_KEY",
+        "GraphQLAPIIdOutput": "tyfqyjbue5c5fp6ddjinfwtmei",
+        "GraphQLAPIEndpointOutput": "https://rt3uti6ppffkdjlrynlafevs6u.appsync-api.ap-southeast-2.amazonaws.com/graphql",
+        "GraphQLAPIKeyOutput": "da2-loekarlb3zac5oxnb2p5ri7glq"
+      },
+      "lastPushTimeStamp": "2018-12-11T02:17:57.323Z"
+    }
+  }
+}

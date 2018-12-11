@@ -1,0 +1,9 @@
+{
+    "bucketName": "qsfphotofeed5899d9c121a84fc1b8aa4ba193396673",
+    "authPolicyName": "s3_amplify_519481cc",
+    "unauthPolicyName": "s3_amplify_519481cc",
+    "authRoleName": "hotoeed-20181211114903-authRole",
+    "unauthRoleName": "hotoeed-20181211114903-unauthRole",
+    "authPermissions": "rw",
+    "unauthPermissions": "r"
+}
