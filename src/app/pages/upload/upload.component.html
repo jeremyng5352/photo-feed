@@ -1,0 +1,27 @@
+<section id="main-upload-container">
+    <div id="upload-header">
+        <h2>QSF</h2>
+        <h4>CHRISTMAS PARTY 2018</h4>
+    </div>
+    <div id="upload-section" *ngIf="currentState === 'NOT_STARTED'">
+        <div id="uploader">
+            <div class="cloud" *ngIf="previewUrl === ''"></div>
+            <div class="description" *ngIf="previewUrl === ''">UPLOAD A PHOTO HERE</div>
+            <button class="image-selection" (click)="chooseFile()" *ngIf="previewUrl === ''">SELECT IMAGE</button>
+            <div class="image-preview" [style.background-image]="'url(' + previewUrl + ')'" *ngIf="previewUrl !== ''"></div>
+            <button class="image-change" (click)="chooseFile()" *ngIf="previewUrl !== ''">CHANGE IMAGE</button>
+            <input #hiddeninput id="hidden-input" (change)="onSelectFile($event)" type="file" multiple style="display: none;" accept="image/*">
+        </div>
+        <div id="caption">
+            <textarea placeholder="Enter a caption (max 280 characters)"></textarea>
+        </div>
+        <button id="upload">UPLOAD</button>
+    </div>
+    <div id="post-upload-section" *ngIf="currentState === 'SUCCESS' || currentState === 'FAILED'">
+        <div class="icon success" *ngIf="currentState === 'SUCCESS'"></div>
+        <div class="icon failed" *ngIf="currentState === 'FAILED'"></div>
+        <div class="status" *ngIf="currentState === 'SUCCESS'">SUCCESS!!!</div>
+        <div class="status" *ngIf="currentState === 'FAILED'">PLEASE TRY AGAIN</div>
+        <button id="start-again">START AGAIN</button>
+    </div>
+</section>
