@@ -52,14 +52,33 @@ export class UploadComponent implements OnInit {
   }
 
   async uploadItem() {
-    const file = this.getImageFile();
-    const caption = this.imageForm.get('caption').value;
-    const data = await API.graphql(graphqlOperation(createItem, {
-      input: {
-        file: file,
-        caption: caption
+    if (this.imageFile) {
+      this.currentState = UPLOAD_STATE.UPLOADING;
+      const file = this.getImageFile();
+      const caption = this.imageForm.get('caption').value;
+      const response = await API.graphql(graphqlOperation(createItem, {
+        input: {
+          file: file,
+          caption: caption
+        }
+      }));
+      this.handleUploadResponse(response);
+    }
+  }
+
+  handleUploadResponse(response) {
+      const hasError = response.hasOwnProperty('error');
+      if (hasError) {
+        this.currentState = UPLOAD_STATE.FAILED;
+      } else {
+        this.currentState = UPLOAD_STATE.SUCCESS;
       }
-    }));
+  }
+
+  resetForm() {
+    this.imageFile = null;
+    this.previewUrl = '';
+    this.imageForm.reset();
   }
 
   getImageFile() {
@@ -69,7 +88,6 @@ export class UploadComponent implements OnInit {
     const bucket = awsmobile.aws_user_files_s3_bucket;
     const region = awsmobile.aws_user_files_s3_bucket_region;
     const key = [UUID.UUID(), extension].filter(x => !!x).join('.');
-
     const file = {
       bucket,
       key,

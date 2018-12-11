@@ -1,6 +1,7 @@
 @import '../../sass/variables';
 @import '../../sass/mixins';
 @import '../../sass/base';
+@import '../../sass/interface';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 $header-height: 75px;
 $uploader-height: 271px;
@@ -93,6 +94,20 @@ $uploader-height: 271px;
             &:disabled {
                 opacity: 0.5;
             }
+        }
+    }
+    #process-section {
+        width: 92.5%;
+        height: 100%;
+        @include column-center;
+        justify-content: flex-start;
+        padding-top: 150px;
+        .description {
+            color: white;
+            margin-top: 40px;
+            letter-spacing: 2px;
+            font-size: 14pt;
+            animation: blink 1.5s infinite ease-in both;
         }
     }
     #post-upload-section {

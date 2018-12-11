@@ -17,11 +17,28 @@
         </form>
         <button id="upload" [disabled]="!imageForm.valid  || imageFile === ''" (click)="uploadItem()">UPLOAD</button>
     </div>
+    <div id="process-section" *ngIf="currentState === 'UPLOADING'">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+        <div class="description">UPLOADING</div>
+    </div>
     <div id="post-upload-section" *ngIf="currentState === 'SUCCESS' || currentState === 'FAILED'">
         <div class="icon success" *ngIf="currentState === 'SUCCESS'"></div>
         <div class="icon failed" *ngIf="currentState === 'FAILED'"></div>
         <div class="status" *ngIf="currentState === 'SUCCESS'">SUCCESS!!!</div>
         <div class="status" *ngIf="currentState === 'FAILED'">PLEASE TRY AGAIN</div>
-        <button id="start-again">START AGAIN</button>
+        <button id="start-again" (click)="resetForm()">START AGAIN</button>
     </div>
 </section>
