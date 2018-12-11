@@ -1,6 +1,7 @@
 @import '../../sass/variables';
 @import '../../sass/mixins';
 @import '../../sass/base';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 $header-height: 75px;
 $uploader-height: 271px;
 #main-upload-container {
@@ -66,7 +67,7 @@ $uploader-height: 271px;
                 background-position: center;
             }
         }
-        div#caption {
+        form#caption {
             width: 100%;
             height: auto;
             padding: 2.5vh 0;
@@ -89,6 +90,9 @@ $uploader-height: 271px;
             background: $dark-pink;
             color: white;
             margin-top: 1vh;
+            &:disabled {
+                opacity: 0.5;
+            }
         }
     }
     #post-upload-section {

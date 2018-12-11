@@ -1,6 +1,7 @@
 @import '../../sass/variables';
 @import '../../sass/mixins';
 @import '../../sass/base';
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 $main-width: 95vw;
 $queue-container-width: 12.5vw;
 #main-slide-show-container {
@@ -16,7 +17,7 @@ $queue-container-width: 12.5vw;
         @include column-center;
         color: white;
         border-bottom: $dark-pink solid 2px;
-        padding: 2vh 0;
+        padding: 4vh 0;
         h2 {
             letter-spacing: 9px;
             font-weight: bold;
@@ -47,7 +48,7 @@ $queue-container-width: 12.5vw;
         width: $main-width;
         height: 100%;
         @include row-center;
-        padding: 4vh 0;
+        padding: 4vh 0 4vh 0;
         .queue-container {
             width: $queue-container-width;
             height: 100%;
@@ -55,8 +56,8 @@ $queue-container-width: 12.5vw;
             justify-content: space-between;
             align-items: flex-start;
             .block {
-                width: $queue-container-width - 2.5vw;
-                height: $queue-container-width - 2.5vw;
+                width: $queue-container-width - 3.5vw;
+                height: $queue-container-width - 3.5vw;
                 position: relative;
                 cursor: pointer;
                 .block-background {
@@ -82,10 +83,10 @@ $queue-container-width: 12.5vw;
             @include row-center;
             justify-content: space-between;
             .image {
-                width: 46.5%;
+                width: 45.5%;
                 height: 100%;
                 background: white;
-                margin-right: 3.5%;
+                margin-right: 4.5%;
             }
             .description-section {
                 width: 50%;

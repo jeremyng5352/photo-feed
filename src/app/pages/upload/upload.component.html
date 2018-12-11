@@ -12,10 +12,10 @@
             <button class="image-change" (click)="chooseFile()" *ngIf="previewUrl !== ''">CHANGE IMAGE</button>
             <input #hiddeninput id="hidden-input" (change)="onSelectFile($event)" type="file" multiple style="display: none;" accept="image/*">
         </div>
-        <div id="caption">
-            <textarea placeholder="Enter a caption (max 280 characters)"></textarea>
-        </div>
-        <button id="upload">UPLOAD</button>
+        <form id="caption" [formGroup]="imageForm">
+            <textarea formControlName="caption" placeholder="Enter a caption (max 280 characters)" maxlength="280"></textarea>
+        </form>
+        <button id="upload" [disabled]="!imageForm.valid  || imageFile === ''" (click)="uploadItem()">UPLOAD</button>
     </div>
     <div id="post-upload-section" *ngIf="currentState === 'SUCCESS' || currentState === 'FAILED'">
         <div class="icon success" *ngIf="currentState === 'SUCCESS'"></div>
