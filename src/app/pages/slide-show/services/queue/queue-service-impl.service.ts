@@ -5,6 +5,7 @@ import { QueueService } from './queue-service';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listItems } from '../../../../../graphql/queries';
 import { onCreateItem } from '../../../../../graphql/subscriptions';
+import { AmplifyService } from 'aws-amplify-angular';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +14,9 @@ export class QueueServiceServiceImpl implements QueueService {
   queueListObservable: Subject<Array<Item>> = new Subject();
   queueList: Array<Item> = [];
 
-  constructor() { }
+  constructor(
+    public amplifyService: AmplifyService
+  ) { }
 
   setupSlideShow() {
     this.retrieveItemsFromServer();
@@ -25,16 +28,23 @@ export class QueueServiceServiceImpl implements QueueService {
     const rawItems = response.data.listItems.items;
     const convertedItems: Array<Item> = [];
     for (const rawItem of rawItems) {
-      convertedItems.push(this.parseRawItem(rawItem));
+      const convertedItem = this.parseRawItem(rawItem);
+      await this.setupItemUrl(convertedItem);
+      convertedItems.push(convertedItem);
     }
     this.itemListObservable.next(convertedItems);
     this.setupQueueList(convertedItems);
   }
 
+  private async setupItemUrl(item: Item) {
+    const url = await this.amplifyService.storage().get(item.getId());
+    item.setUrl(url.toString());
+  }
+
   private parseRawItem(raw: any): Item {
     const id = raw['id'];
     const caption = raw['caption'];
-    return new Item(id, caption);
+    return new Item(id, caption, '');
   }
 
   // graphlQL subscription

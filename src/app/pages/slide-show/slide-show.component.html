@@ -6,23 +6,23 @@
     <div id="message">Upload your photos at <a href="">loremipsum.com</a></div>
     <div id="slide-show-container">
         <div class="queue-container">
-            <div class="block">
-                <div class="block-background"></div>
-                <div class="helper">NEXT PHOTO</div>
+            <div class="block" *ngIf="queueItem1">
+                <div class="block-background" [style.backgroundImage]="'url('+ queueItem1.url +')'"></div>
+                <div class="helper">{{queueItem1.caption}}</div>
+                <!-- <div class="helper">NEXT PHOTO</div> -->
             </div>
-            <div class="block">
-                <div class="block-background"></div>
+            <div class="block" *ngIf="queueItem2">
+                <div class="block-background" [style.backgroundImage]="'url('+ queueItem2.url +')'"></div>
             </div>
-            <div class="block">
-                <div class="block-background"></div>
+            <div class="block" *ngIf="queueItem3">
+                <div class="block-background" [style.backgroundImage]="'url('+ queueItem3.url +')'"></div>
             </div>
         </div>
-        <div class="image-container">
-            <div class="image"></div>
+        <div class="image-container" *ngIf="currentItem">
+            <div class="image" [style.backgroundImage]="'url('+ currentItem.url +')'"></div>
             <div class="description-section">
                 <div class="description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum dictum mi sit amet bibendum dictum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris non consectetur lectus, at scelerisque tortor. Nullam
-                    sagittis aliquet vehicula. Curabitur non mollis mauris. Nam sagittis molestie ipsum, feugiat dictum neque porttitor vel. Aliquam non elit condimentum, varius felis ut, gravida nulla.
+                    {{currentItem.caption}}
                 </div>
                 <button class="next">NEXT</button>
             </div>

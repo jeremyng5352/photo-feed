@@ -68,7 +68,6 @@ export class UploadComponent implements OnInit {
       }));
       const imageId = (<any>response).data.createItem.id;
       this.uploadItemToS3(imageId);
-      // this.amplifyService.storage().get(imageId).then(console.log).catch(console.error);
       this.handleUploadResponse(response);
     }
   }
