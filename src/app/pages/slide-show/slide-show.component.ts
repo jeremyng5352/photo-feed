@@ -1,23 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { API, graphqlOperation } from 'aws-amplify';
-import { listItems } from '../../../graphql/queries';
+import { QueueService } from './services/queue/queue-service';
+import { Item } from './item';
 @Component({
   selector: 'app-slide-show',
   templateUrl: './slide-show.component.html',
   styleUrls: ['./slide-show.component.scss']
 })
 export class SlideShowComponent implements OnInit {
-
-  constructor() { }
+  itemList: Array<Item>;
+  queueList: Array<Item>;
+  constructor(private queueService: QueueService) { }
 
   ngOnInit() {
-    this.getAllItems();
+    this.queueService.setupSlideShow();
+    this.getAllLists();
   }
 
-  async getAllItems() {
-    const allItems: any = await API.graphql(graphqlOperation(listItems
-    ));
-    console.log(allItems.data.listItems.items);
+  getAllLists() {
+    this.queueService.getItemList().subscribe((list: Array<Item>) => {
+      this.itemList = list;
+    });
+    this.queueService.getQueueList().subscribe((list: Array<Item>) => {
+      this.queueList = list;
+      console.log(this.queueList);
+    });
   }
 
 }

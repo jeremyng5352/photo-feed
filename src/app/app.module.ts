@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { UploadComponent } from './pages/upload/upload.component';
 import { SlideShowComponent } from './pages/slide-show/slide-show.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ServiceModule } from './service.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     AmplifyAngularModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ServiceModule
   ],
   providers: [AmplifyService],
   bootstrap: [AppComponent]
