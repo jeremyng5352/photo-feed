@@ -11,12 +11,13 @@ export class SlideShowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getAllItems();
   }
 
   async getAllItems() {
-    const data = await API.graphql(graphqlOperation(listItems
+    const allItems: any = await API.graphql(graphqlOperation(listItems
     ));
-    console.log('item list', data);
+    console.log(allItems.data.listItems.items);
   }
 
 }

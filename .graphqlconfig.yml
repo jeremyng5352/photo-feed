@@ -4,7 +4,7 @@ projects:
     includes:
       - src/graphql/**/*.ts
     excludes:
-      - ./amplify/**
+      - amplify/**
     extensions:
       amplify:
         graphQLApiId: tyfqyjbue5c5fp6ddjinfwtmei
@@ -12,6 +12,3 @@ projects:
         generatedFileName: src/API.ts
         docsFilePath: src/graphql
         region: ap-southeast-2
-      endpoints:
-        prod: >-
-          https://rt3uti6ppffkdjlrynlafevs6u.appsync-api.ap-southeast-2.amazonaws.com/graphql

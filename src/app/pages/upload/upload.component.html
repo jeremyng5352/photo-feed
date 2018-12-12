@@ -15,7 +15,7 @@
         <form id="caption" [formGroup]="imageForm">
             <textarea formControlName="caption" placeholder="Enter a caption (max 280 characters)" maxlength="280"></textarea>
         </form>
-        <button id="upload" [disabled]="!imageForm.valid  || imageFile === ''" (click)="uploadItem()">UPLOAD</button>
+        <button id="upload" [disabled]="!imageForm.valid  || imageFile === ''" (click)="uploadItemToDynamo()">UPLOAD</button>
     </div>
     <div id="process-section" *ngIf="currentState === 'UPLOADING'">
         <div class="sk-circle">
