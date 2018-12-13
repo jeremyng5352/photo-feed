@@ -32,6 +32,7 @@ export class QueueServiceServiceImpl implements QueueService {
       await this.setupItemUrl(convertedItem);
       convertedItems.push(convertedItem);
     }
+    convertedItems.reverse();
     this.itemListObservable.next(convertedItems);
     this.setupQueueList(convertedItems);
   }
@@ -98,4 +99,5 @@ export class QueueServiceServiceImpl implements QueueService {
     this.queueList.push(item);
     this.queueListObservable.next(this.queueList);
   }
+
 }

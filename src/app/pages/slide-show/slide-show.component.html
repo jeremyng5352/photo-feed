@@ -24,15 +24,25 @@
                 <div class="description">
                     {{currentItem.caption}}
                 </div>
-                <button class="next" (click)="nextItem()">NEXT</button>
+                <button class="next" (click)="showNextItem()">NEXT</button>
             </div>
         </div>
     </div>
 </section>
-<section id="slide-show-controller" *ngIf="itemList">
+<section id="slide-show-controller" *ngIf="itemList" [ngClass]="{'show-controller': isControllerShown, 'hide-controller': !isControllerShown}">
+    <div class="arrow" *ngIf="!isControllerShown">
+        <i class="fas fa-chevron-up" (click)="isControllerShown = true"></i>
+    </div>
+    <div class="arrow" *ngIf="isControllerShown">
+        <i class="fas fa-chevron-down" *ngIf="isControllerShown" (click)="isControllerShown = false"></i>
+    </div>
+
     <div id="item-list-container">
-        <div class="item" *ngFor="let item of itemList" [style.backgroundImage]="'url('+ item.url +')'">
+        <div class="item" *ngFor="let item of itemList; let i = index" (click)="setClickedItem(item, i)" [class.selected-item]="i == selectedItemIndex" [style.backgroundImage]="'url('+ item.url +')'">
         </div>
     </div>
-    <div id="controller-container"></div>
+    <div id="controller-container">
+        <i class="fas fa-bars" [class.disabled-button]="selectedItem === undefined" (click)="addItemToQueue()"></i>
+        <i class="fas fa-play" [class.disabled-button]="selectedItem === undefined" (click)="addItemNext()"></i>
+    </div>
 </section>
