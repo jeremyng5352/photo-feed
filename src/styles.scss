@@ -17,3 +17,21 @@ body {
 a {
     color: inherit;
 }
+
+::-webkit-scrollbar-track {
+    background: #a1a1a1;
+    height: 5px;
+    z-index: 20;
+}
+
+::-webkit-scrollbar {
+    height: 5px;
+    z-index: 20;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #616161;
+    border-radius: 50px;
+    border: black solid 1px;
+    z-index: 20;
+}

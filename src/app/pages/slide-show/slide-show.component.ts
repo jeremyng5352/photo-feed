@@ -38,4 +38,8 @@ export class SlideShowComponent implements OnInit {
     this.queueItem3 = this.queueList[3];
   }
 
+  nextItem() {
+    this.queueService.showNextItem();
+  }
+
 }

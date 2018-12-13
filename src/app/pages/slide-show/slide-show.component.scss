@@ -130,3 +130,37 @@ $queue-container-width: 12.5vw;
         }
     }
 }
+
+#slide-show-controller {
+    position: fixed;
+    width: 100vw;
+    height: 15vh;
+    bottom: 0;
+    background: black;
+    @include row-center;
+    justify-content: space-between;
+    div#item-list-container {
+        width: 80vw;
+        height: 100%;
+        @include row-center;
+        justify-content: flex-start;
+        border-top: white solid 1px;
+        padding: 1.5vh;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        .item {
+            width: 12vh;
+            height: 12vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-right: 3vh;
+        }
+    }
+    div#controller-container {
+        width: 20vw;
+        height: 100%;
+        @include row-center;
+        justify-content: space-between;
+    }
+}

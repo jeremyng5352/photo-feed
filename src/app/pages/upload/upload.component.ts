@@ -93,6 +93,7 @@ export class UploadComponent implements OnInit {
     this.imageFile = null;
     this.previewUrl = '';
     this.imageForm.reset();
+    this.currentState = UPLOAD_STATE.NOT_STARTED;
   }
 
   getImageFile() {

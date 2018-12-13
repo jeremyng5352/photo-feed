@@ -84,11 +84,18 @@ export class QueueServiceServiceImpl implements QueueService {
     return this.queueListObservable;
   }
 
-  showItemNext(item: Item) {
+  showNextItem() {
+    this.queueList.shift();
+    this.queueListObservable.next(this.queueList);
+  }
 
+  addItemNext(item: Item) {
+    this.queueList.splice(1, 0, item);
+    this.queueListObservable.next(this.queueList);
   }
 
   addItemToQueue(item: Item) {
-
+    this.queueList.push(item);
+    this.queueListObservable.next(this.queueList);
   }
 }

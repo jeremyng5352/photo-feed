@@ -24,8 +24,15 @@
                 <div class="description">
                     {{currentItem.caption}}
                 </div>
-                <button class="next">NEXT</button>
+                <button class="next" (click)="nextItem()">NEXT</button>
             </div>
         </div>
     </div>
+</section>
+<section id="slide-show-controller" *ngIf="itemList">
+    <div id="item-list-container">
+        <div class="item" *ngFor="let item of itemList" [style.backgroundImage]="'url('+ item.url +')'">
+        </div>
+    </div>
+    <div id="controller-container"></div>
 </section>
