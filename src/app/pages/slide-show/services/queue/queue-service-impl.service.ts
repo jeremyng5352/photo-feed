@@ -13,6 +13,7 @@ export class QueueServiceServiceImpl implements QueueService {
   itemListObservable: Subject<Array<Item>> = new Subject();
   queueListObservable: Subject<Array<Item>> = new Subject();
   queueList: Array<Item> = [];
+  itemList: Array<Item> = [];
 
   constructor(
     public amplifyService: AmplifyService
@@ -32,8 +33,7 @@ export class QueueServiceServiceImpl implements QueueService {
       await this.setupItemUrl(convertedItem);
       convertedItems.push(convertedItem);
     }
-    convertedItems.reverse();
-    this.itemListObservable.next(convertedItems);
+    // convertedItems.reverse();
     this.setupQueueList(convertedItems);
   }
 
@@ -56,21 +56,27 @@ export class QueueServiceServiceImpl implements QueueService {
     });
   }
 
-  private setupQueueList(itemList: Array<Item>) {
+  private setupQueueList(convertedItems: Array<Item>) {
     if (this.queueList.length === 0) {
-      this.queueList = itemList;
-      this.queueListObservable.next(this.queueList);
-    } else {
-      const items = this.getNonDuplicatedItems(itemList);
-      for (const item of items) {
+      for (const item of convertedItems) {
         this.queueList.push(item);
+        this.itemList.push(item);
       }
-      this.queueListObservable.next(this.queueList);
+    } else {
+      const newItems = this.getNonDuplicatedItems(convertedItems);
+      for (const item of newItems) {
+        this.queueList.push(item);
+        this.itemList.push(item);
+      }
     }
+    
+    // Do the updates for the queues here
+    this.queueListObservable.next(this.queueList);
+    this.itemListObservable.next(this.itemList);
   }
 
   private getNonDuplicatedItems(itemList: Array<Item>): Array<Item> {
-    const queueListIds = this.queueList.map(queueItem => queueItem.getId());
+    const queueListIds = this.itemList.map(queueItem => queueItem.getId());
     const nonDuplicatedItems: Array<Item> = itemList.filter((item) => {
       return queueListIds.indexOf(item.getId()) < 0;
     });

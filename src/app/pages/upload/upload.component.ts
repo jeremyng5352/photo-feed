@@ -56,29 +56,29 @@ export class UploadComponent implements OnInit {
   async uploadItemToDynamo() {
     if (this.imageFile) {
       this.currentState = UPLOAD_STATE.UPLOADING;
+      const id = UUID.UUID();
       const file = this.getImageFile();
       const caption = this.imageForm.get('caption').value;
-
+      await this.amplifyService.storage().put(id, this.imageFile);
       // put the file data into dynamodb first to get the id
       const response = await API.graphql(graphqlOperation(createItem, {
         input: {
+          id: id,
           file: file,
           caption: caption
         }
       }));
-      const imageId = (<any>response).data.createItem.id;
-      this.uploadItemToS3(imageId);
       this.handleUploadResponse(response);
     }
   }
 
-  uploadItemToS3(imageId: string) {
-    // then use the id to push the image to S3
-    this.amplifyService.storage().put(imageId, this.imageFile).then(result => {
-      console.log('s3 bucket submitted', result);
-    }).catch(err => console.log(err));
-    // this is how you get the url in s3
-  }
+  // uploadItemToS3(imageId: string) {
+  //   // then use the id to push the image to S3
+  //   this.amplifyService.storage().put(imageId, this.imageFile).then(result => {
+  //     console.log('s3 bucket submitted', result);
+  //   }).catch(err => console.log(err));
+  //   // this is how you get the url in s3
+  // }
 
   handleUploadResponse(response) {
     const hasError = response.hasOwnProperty('error');

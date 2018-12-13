@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { QueueService } from './services/queue/queue-service';
 import { Item } from './item';
+import { Timer } from 'src/app/classes/timer';
+
+const INTERVAL = 5000;
+
 @Component({
   selector: 'app-slide-show',
   templateUrl: './slide-show.component.html',
   styleUrls: ['./slide-show.component.scss']
 })
 export class SlideShowComponent implements OnInit {
+  private timer: Timer;
+
+  isTimerRunning = false;
   isControllerShown = false;
   itemList: Array<Item>;
   queueList: Array<Item>;
@@ -20,30 +27,44 @@ export class SlideShowComponent implements OnInit {
 
   ngOnInit() {
     this.queueService.setupSlideShow();
+    this.timer = new Timer(INTERVAL);
+    this.timer.timeUp.subscribe(() => {
+        this.handleTimerUp();
+    });
     this.getAllLists();
   }
 
+  private handleTimerUp() {
+    console.log('timer is up!');
+    if (this.queueList.length > 1) {
+      this.showNextItem();
+    } else {
+      this.timer.stop();
+    }
+  }
+
   getAllLists() {
-    this.queueService.getItemList().subscribe((list: Array<Item>) => {
-      this.itemList = list;
-      console.log('item', this.itemList);
+    this.queueService.getItemList().subscribe((itemList: Array<Item>) => {
+      this.itemList = [];
+      for (const item of itemList) {
+        this.itemList.push(item);
+      }
     });
-    this.queueService.getQueueList().subscribe((list: Array<Item>) => {
-      this.queueList = list;
-      console.log('queue', this.queueList);
+    this.queueService.getQueueList().subscribe((queueList: Array<Item>) => {
+      this.queueList = queueList;
       this.setupItemDisplay();
     });
   }
 
   setupItemDisplay() {
+    if (!this.timer.isActive()) {
+      console.log('starting timer')
+      this.timer.start();
+    }
     this.currentItem = this.queueList[0];
     this.queueItem1 = this.queueList[1];
     this.queueItem2 = this.queueList[2];
     this.queueItem3 = this.queueList[3];
-  }
-
-  nextItem() {
-    this.queueService.showNextItem();
   }
 
   setClickedItem(item: Item, index: number) {
